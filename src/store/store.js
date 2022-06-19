@@ -1,0 +1,52 @@
+import {createSlice,configureStore} from '@reduxjs/toolkit'
+import { act } from 'react-dom/test-utils'
+const initialState = {
+    person : {
+        name: '',
+        lastname: '',
+        nickname : '',
+        email : '',
+        password : ''
+    },
+
+    isLoggined : 0
+}
+
+const storeManipulation = createSlice({
+    name : 'information',
+    initialState,
+    reducers: ({
+        loggined(state) {
+            console.log(state)
+        },
+        startChangeLoginInfo(state,action){
+            if(action.payload == 1){
+               
+                state.isLoggined = action.payload
+            }else
+            if(action.payload == 0) {
+                state.isLoggined = action.payload
+            }else{
+                state.isLoggined = 0
+            }
+        },
+
+        changeUserInformationPlus(state,action){
+          
+           state.person['name'] = action.payload['firstname']
+           state.person['lastname'] = action.payload['lastname']
+           state.person['nickname'] = action.payload['nickname']
+           state.person['email'] = action.payload['email']
+           state.person['password'] = action.payload['password']
+        }
+
+    })
+})
+
+const store = configureStore({
+    reducer: storeManipulation.reducer
+})
+
+
+export const functionsFromStore = storeManipulation.actions
+export default store

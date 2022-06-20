@@ -2,15 +2,16 @@ import { Fragment, useEffect,useState } from 'react';
 import './App.css';
 import NavBar from './components/NavBar/NavBar';
 import Axious from 'axios'
-import Home from './components/home/home';
+import Body from './registaredComponents/body';
 import Login from './components/login/login';
 import Registar from './components/registar/registar';
 import {useSelector,useDispatch} from 'react-redux'
 import { functionsFromStore } from './store/store';
 function App() {
   const dispatch = useDispatch()
-  const [layout,setLayout] = useState('home')
+  const [layout,setLayout] = useState('login')
   const loginInfo = useSelector(state => state.isLoggined)
+  console.log('aq kide ertxel shemovedi')
   const [isLoggined,setLoggined] = useState(localStorage.getItem('isLoggined'))
   useEffect(()=>{
     dispatch(functionsFromStore.startChangeLoginInfo(isLoggined))
@@ -20,16 +21,13 @@ function App() {
   localStorage.setItem('ID', 0)
 
   setLoggined(localStorage.getItem('isLoggined'))
-  
+
   }
-  console.log(isLoggined)
-  console.log(loginInfo)
-  console.log(`??????????????????${isLoggined}`)
-  if(isLoggined == 0 || isLoggined == null){
+
+  if(loginInfo== 0 || loginInfo == null){
     return (
       <Fragment>
        <NavBar layout = {setLayout} />
-       {layout === 'home' && <Home  />}
        {layout === 'login' && <Login isloggined = {setLoggined} />}
        {layout ==='registar' && <Registar />}
     
@@ -38,10 +36,7 @@ function App() {
   }
   else{
     return (
-      <Fragment>
-        <div>hello my friend</div>
-        <button onClick={logut}>logut</button>
-      </Fragment>
+    <Body logut = {logut} />
     )
   }
 }

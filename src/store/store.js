@@ -2,14 +2,15 @@ import {createSlice,configureStore} from '@reduxjs/toolkit'
 import { act } from 'react-dom/test-utils'
 const initialState = {
     person : {
-        name: '',
+        firstname: '',
         lastname: '',
         nickname : '',
         email : '',
         password : ''
     },
 
-    isLoggined : 0
+    isLoggined : 0,
+    background  : ''
 }
 
 const storeManipulation = createSlice({
@@ -33,12 +34,13 @@ const storeManipulation = createSlice({
 
         changeUserInformationPlus(state,action){
           
-           state.person['name'] = action.payload['firstname']
+           state.person['firstname'] = action.payload['firstname']
            state.person['lastname'] = action.payload['lastname']
            state.person['nickname'] = action.payload['nickname']
            state.person['email'] = action.payload['email']
            state.person['password'] = action.payload['password']
         }
+        
 
     })
 })

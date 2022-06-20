@@ -75,6 +75,40 @@ app.post('/registration',(req,res) =>{
   })
  
 })
+
+app.post('/byId',(req,res)=>{
+  console.log(req.body)
+  con.query(`SELECT * FROM registaredusers WHERE ID = '${req.body.id}'`,(err,result)=>{
+    if(err){
+      res.send('err')
+    }
+    res.send(result)  
+  })
+ 
+})
+app.post('/update',(req,res) =>{
+  console.log('shemovedi')
+   const firstname = req.body.firstname
+   const lastname = req.body.lastname
+   const nickname = req.body.nickname
+   const email = req.body.email
+   console.log(email)
+  
+   console.log(email)
+   console.log(req.body)
+   
+   con.query(`UPDATE registaredusers SET firstname = '${firstname}', lastname = '${lastname}', nickname = '${nickname}' WHERE email = '${email}'  `,(err,result)=>{
+    if(err){
+      console.log('err')
+      res.send(err)
+      throw err
+    }
+    console.log('akvar')
+    console.log(result)
+    res.send('eyo')
+   })
+})
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`)
   })
+

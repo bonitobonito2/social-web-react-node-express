@@ -54,7 +54,7 @@ const Login = (props)=>{
       <h1>Login</h1>
       <div class="content">
         <div  class="input-field">
-          <input class = {classEmail}  onChange={EmailChangeHandler} onBlur ={lostFocusEmail} type="email" placeholder="Email" autocomplete="nope" />
+          <input class = {classEmail}  onChange={EmailChangeHandler} onBlur ={lostFocusEmail} type="email" placeholder="Email" />
         </div>
         <div class="input-field">
           <input class = {passwordclass} onChange ={ passwordChangeHandler} onBlur = {passwordFocus} type="password" placeholder="Password" autocomplete="new-password" />

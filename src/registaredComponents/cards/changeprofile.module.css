@@ -1,0 +1,61 @@
+.backdrop { 
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    
+      background: #574e4e;
+      font-family: 'Rubik', sans-serif;
+    
+    z-index: -1;
+}
+
+
+
+.card{
+    position: fixed;
+    top: 30vh;
+    left: 35%;
+    width: 30%;
+    height: 35%;
+    background-color: rgb(255, 253, 253);
+    padding: 1rem;
+    border-radius: 14px;
+   
+    z-index: 30;
+    animation: slide-down 300ms ease-out forwards;
+    box-shadow: 10px 10px 10px rgba(3, 3, 3, 0.418);
+    margin: 0 auto;
+    border: 2px solid rgb(24, 23, 23);
+}
+
+
+.card input[type=text], select {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    text-align: center;
+  }
+
+.card input[type=submit]:hover {
+    background-color: #aaaaaa;
+    color: black;
+  }
+
+
+
+  .btn {
+    width: 100%;
+    background-color: #2c352c;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}    

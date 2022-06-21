@@ -23,6 +23,9 @@ const Login = (props)=>{
                   props.isloggined(localStorage.getItem('isLoggined'))
                   dispatch(functionsFromStore.changeUserInformationPlus(response.data[0]))
 
+                }else{
+                  setLoading(false)
+                  alert('password or email email is wrong')
                 }
                 setLoading(false)
               })
@@ -50,6 +53,7 @@ const Login = (props)=>{
     
     }
     return <div class="login-form">
+  
     <form onSubmit={submitHandler}>
       <h1>Login</h1>
       <div class="content">

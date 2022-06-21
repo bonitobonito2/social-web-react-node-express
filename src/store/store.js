@@ -1,12 +1,13 @@
 import {createSlice,configureStore} from '@reduxjs/toolkit'
-import { act } from 'react-dom/test-utils'
+
 const initialState = {
     person : {
         firstname: '',
         lastname: '',
         nickname : '',
         email : '',
-        password : ''
+        password : '',
+        potourl : ''
     },
 
     isLoggined : 0,
@@ -39,6 +40,7 @@ const storeManipulation = createSlice({
            state.person['nickname'] = action.payload['nickname']
            state.person['email'] = action.payload['email']
            state.person['password'] = action.payload['password']
+           state.person['potourl'] = action.payload['potorul']
         }
         
 

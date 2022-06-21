@@ -1,0 +1,21 @@
+.people{
+    background: #fff;
+    width: 500px;
+    height: 20%;
+    margin: 65px auto;
+    display: -webkit-box;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+            flex-direction: column;
+    border-radius: 4px;
+    margin: 0 auto;
+    box-shadow: 0 2px 25px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+  
+}
+.loading{
+    align-self: center;
+    position: relative;
+    bottom: 50px;
+}

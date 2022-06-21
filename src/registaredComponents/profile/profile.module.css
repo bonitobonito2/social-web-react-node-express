@@ -48,8 +48,8 @@
     font-family: 'Rubik', sans-serif;
     cursor: pointer;
     text-transform: uppercase;
-    background: #c1c2c5;
-    color: rgb(77, 76, 76);
+    background: #727479;
+    color: rgb(206, 204, 204);
     border-bottom-left-radius: 4px;
     border-bottom-right-radius: 0;
     letter-spacing: 0.2px;
@@ -58,6 +58,61 @@
     transition: all .3s;
 }
 .button:hover{
+    background-color: #515551;
+    color: white;
+}
+
+.button1{
+    width: 100%;
+    border: none;
+    padding: 18px;
+    height: 20%;
+    font-family: 'Rubik', sans-serif;
+    cursor: pointer;
+    text-transform: uppercase;
+    background: #6b1717;
+    color: rgb(165, 163, 163);
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 0;
+    letter-spacing: 0.2px;
+    outline: 0;
+    -webkit-transition: all .3s;
+    transition: all .3s;
+}
+
+
+.button1:hover{
+  
+    background: #420b0b;
+    color: rgb(219, 219, 219);
+  
+}
+.image{
+    width: 30%;
+    height: 30%;
+    border-radius: 5px;
+
+}
+
+.buttonChangeProfile{
+    width: 100%;
+    border: none;
+    padding: 18px;
+    height: 20%;
+    font-family: 'Rubik', sans-serif;
+    cursor: pointer;
+    text-transform: uppercase;
+    background: #727479;
+    color: rgb(206, 204, 204);
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 0;
+    letter-spacing: 0.2px;
+    outline: 0;
+    -webkit-transition: all .3s;
+    transition: all .3s;
+}
+
+.buttonChangeProfile:hover{
     background-color: #515551;
     color: white;
 }

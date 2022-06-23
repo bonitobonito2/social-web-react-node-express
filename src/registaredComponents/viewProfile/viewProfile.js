@@ -5,7 +5,6 @@ import { functionsFromStore } from "../../store/store"
 import loadingClasses from '../../loading/loading.module.css'
 import classes from './viewProfile.module.css'
 
-
 const ViewProfile = (props)=>{
     const emailOfPerson = useSelector(state=>state.viewUserEmail)
     const myEmail = useSelector(state => state.person.email)

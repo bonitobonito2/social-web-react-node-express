@@ -1,4 +1,3 @@
-
 const cors=require("cors");
 const express = require('express');
 const bodyParser = require('body-parser');
@@ -16,7 +15,6 @@ var con = mysql.createConnection({
   database : 'socialweb'
 });
 
-
 con.connect(function(err) {
   if (err) throw err;
   console.log("Connected!");
@@ -29,15 +27,10 @@ app.post('/login', (req, res) => {
        con.query(`select * from registaredUsers WHERE email = "${email.trim()}" && password = "${password.trim()}" `,(err,result,fields)=>{
         if(err) throw err
         console.log(result)
-        if(result.length == 0){
-          res.send('failed registration')
-        }
-        else{
-          res.send(result)
-        }
+        if(result.length == 0) res.send('failed registration')
+        else res.send(result)
       })
 });
-
 
 app.get('/', (req, res) => {
     res.message = {
@@ -55,7 +48,14 @@ app.post('/registration',(req,res) =>{
   con.query(`select * from registaredUsers WHERE email = "${req.body.email}"`,(err,result,fields)=>{
     if(result.length == 0){
       const potourl = 'https://media.istockphoto.com/vectors/default-profile-picture-avatar-photo-placeholder-vector-illustration-vector-id1223671392?k=20&m=1223671392&s=612x612&w=0&h=lGpj2vWAI3WUT1JeJWm1PRoHT3V15_1pdcTn2szdwQ0='
-      con.query(`INSERT INTO registaredusers (firstname,lastname,nickname,email,password,potorul) VALUES ('${name}','${lastname}','${nickname}', '${email}', '${password}','${potourl}')`,(err,result)=>{
+      con.query(`INSERT INTO registaredusers (firstname,lastname,nickname,email,password,potorul) 
+      VALUES (
+        '${name}',
+        '${lastname}',
+        '${nickname}',
+        '${email}',
+        '${password}',
+        '${potourl}')`,(err,result)=>{
         if(err){
           res.send('err')
           throw err
@@ -68,7 +68,12 @@ app.post('/registration',(req,res) =>{
           }
         }
         console.log(newemail)
-        con.query(`CREATE TABLE ${newemail}friends (email VARCHAR(30), name VARCHAR(30), potourl LONGTEXT, lastname VARCHAR(20), nickname VARCHAR(25))`,(err,result)=>{
+        con.query(`CREATE TABLE ${newemail}friends 
+        (email VARCHAR(30),
+         name VARCHAR(30),
+         potourl LONGTEXT,
+         lastname VARCHAR(20),
+         nickname VARCHAR(25))`,(err,result)=>{
           if(err) throw err
           res.send('succses')
         })
@@ -82,10 +87,8 @@ app.post('/registration',(req,res) =>{
 app.post('/byId',(req,res)=>{
   console.log(req.body)
   con.query(`SELECT * FROM registaredusers WHERE ID = '${req.body.id}'`,(err,result)=>{
-    if(err){
-      res.send('err')
-    }
-      res.send(result)
+    if(err)  res.send('err')
+    res.send(result)
   })
  
 })
@@ -94,7 +97,11 @@ app.post('/update',(req,res) =>{
    const lastname = req.body.lastname
    const nickname = req.body.nickname
    const email = req.body.email
-   con.query(`UPDATE registaredusers SET firstname = '${firstname}', lastname = '${lastname}', nickname = '${nickname}' WHERE email = '${email}'  `,(err,result)=>{
+   con.query(`UPDATE registaredusers SET
+    firstname = '${firstname}',
+    lastname = '${lastname}',
+    nickname = '${nickname}'
+    WHERE email = '${email}'  `,(err,result)=>{
     if(err){
       res.send(err)
       throw err
@@ -114,16 +121,14 @@ app.post('/updateImage',(req,res)=>{
     if(err) throw err
     res.send('egaris')
   })
-
 })
+
 app.post('/deleteaccount',(req,res)=>{
   console.log(req.body)
   con.query(`DELETE FROM registaredusers WHERE ID =${req.body.id} `,(err,result)=>{
     if(err) throw err
-    console.log('yep')
     res.send('yep')
   })
-  
 })
 
 app.post('/getPersonByEmail',(req,res)=>{
@@ -133,36 +138,38 @@ app.post('/getPersonByEmail',(req,res)=>{
     if(err) throw err
     res.send(result)
   })
-
 })
 
 app.post('/addfriend',(req,res)=>{
   console.log(req.body)
-   const hm = ''
    con.query(`insert into ${req.body.emailForTable1} (email,name,potourl,lastname,nickname)
-    VALUES('${req.body.info2.email}','${req.body.info2.firstname}','${req.body.info2.potorul}','${req.body.info2.lastname}','${req.body.info2.nickname}')`,(err,result)=>{
-
-    con.query(`insert into ${req.body.emailForTable2} (email,name,potourl,lastname,nickname)
-     VALUES('${req.body.info1.email}','${req.body.info1.firstname}','${req.body.info1.potourl}','${req.body.info1.lastname}','${req.body.info1.nickname}')`,(err,result)=>{
-      res.send('inserted')
+      VALUES(
+      '${req.body.info2.email}',
+      '${req.body.info2.firstname}',
+      '${req.body.info2.potorul}',
+      '${req.body.info2.lastname}',
+      '${req.body.info2.nickname}')`,(err,result)=>{
+        if(err) console.log(err)
+      con.query(`insert into ${req.body.emailForTable2} (email,name,potourl,lastname,nickname)
+         VALUES(
+          '${req.body.info1.email}',
+          '${req.body.info1.firstname}',
+          '${req.body.info1.potourl}',
+          '${req.body.info1.lastname}',
+          '${req.body.info1.nickname}')`,(err,result)=>{
+            if (err) console.log(err)
+            res.send('inserted')
    })
   })
 })
 
 app.post('/isfriend',(req,res)=>{
   con.query(`SELECT * from ${req.body.tableName}friends where email = '${req.body.email}'`,(err,result)=>{
-    if(err){
-      console.log(err)
-    }
-    if(result.length == 0){
-      res.send('not friends')
-    }else{
-      res.send('friends')
-    }
+    if(err) console.log(err)
+    if(result.length == 0) res.send('not friends')
+    else  res.send('friends')
   })
-  
 })
-
 
 app.post('/removeFriend',(req,res)=>{
   console.log(req.body)
@@ -183,9 +190,7 @@ app.post('/getallfriend',(req,res)=>{
     console.log(result+'xddd')
     res.send(result)
   })
-
 })
-
 
 app.post('/getallfriendbyname',(req,res)=>{
   console.log(req.body)
@@ -193,30 +198,23 @@ app.post('/getallfriendbyname',(req,res)=>{
     if(err){
       console.log(err)
     }
-  
       if(result.length == 0){
-      
         con.query(`SELECT * from ${req.body.tableName}friends where name LIKE '%${req.body.name}%'`,(err,result)=>{
           console.log('nulia')
           if(result.length == 0){
             console.log('nulia2')
             con.query(`SELECT * from ${req.body.tableName}friends where lastname LIKE '%${req.body.name}%'`,(err,result)=>{
-              console.log(req.body.lastname)
-            
+              console.log(req.body.lastname) 
               res.send(result)
             })
           }else{
             res.send(result)
           }
-         
         })
       }else{
         res.send(result)
       }
-    
-  
   })
-  
 })
 
 app.listen(port, () => {

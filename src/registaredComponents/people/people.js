@@ -5,7 +5,7 @@ import loadingClasses from '../../loading/loading.module.css'
 import classes from './people.module.css'
 import { useSelector } from "react-redux"
 import Card from "./card"
-const People = () =>{
+const People = (props) =>{
 const [people,setPeople] = useState([])
 const [loading,setLoading]  = useState(false)
 const userGmail = useSelector(state => state.person.email)
@@ -43,7 +43,7 @@ useEffect(()=>{
     return <div>
        {people.map(state=>
  <Card
-  
+  layout = {props.layout}
   firstname = {state.firstname}
         lastname = {state.lastname}
         email = {state.email}

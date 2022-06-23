@@ -8,6 +8,7 @@ const NavBarLogined = (props)=>{
     const [actived,setActived] = useState('profile')
     const logged = useSelector(state=>state.isLoggined)
     const picurl = useSelector(state=>state.person)
+   
     console.log(picurl)
     console.log(logged)
     const navLogoutHandler = ()=> {
@@ -35,13 +36,18 @@ const NavBarLogined = (props)=>{
         props.layout('people')
         setActived('people')
     }
-    
+    const friendsHandler = ()=>{
+        props.setActivatedFriends(state => !state)
+    }
+   
     return<div className={Classes.navBar}>
     
     <li><a  onClick={navLogoutHandler} class = {actived ==='logout' && Classes.active} href="#">logout</a></li>
-    <li><a onClick={navProfileHandler} class = {actived ==='profile' && Classes.active} href="#">profile</a></li>
+    <li><a onClick = {friendsHandler} class = {props.activatedFriends && Classes.active}  href="#">friends</a></li>
+    <li><a  onClick={navProfileHandler} class = {actived ==='profile' && Classes.active} href="#">profile</a></li>
     <li><a onClick = {navPeopleHandler} class = {actived === 'people' && Classes.active}  href="#">people</a></li>
-    <img className={Classes.img} src = {picurl.potourl}/>
+ 
+    <img onClick={navProfileHandler} className={Classes.img} src = {picurl.potourl}/>
 
     {/* <li><a onClick={navRegistarHandler} class = {actived ==='upload' && Classes.active} href="#">uoload</a></li>
     <li><a onClick={navRegistarHandler} class = {actived ==='people' && Classes.active} href="#">people</a></li> */}

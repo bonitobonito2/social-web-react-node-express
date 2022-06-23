@@ -22,10 +22,6 @@ con.connect(function(err) {
   console.log("Connected!");
 });
 
-
-
-
-
 app.post('/login', (req, res) => {
     console.log('Got body:', req.body);
        const email = req.body.email
@@ -64,13 +60,23 @@ app.post('/registration',(req,res) =>{
           res.send('err')
           throw err
         } 
-        res.send('succses')
+        console.log('user inserted')
+        let newemail = ''
+        for(var i = 0; i < email.length; i++){
+          if(email[i] !== '.' & email[i] !== '@'){
+            newemail+= email[i]
+          }
+        }
+        console.log(newemail)
+        con.query(`CREATE TABLE ${newemail}friends (email VARCHAR(30), name VARCHAR(30), potourl LONGTEXT, lastname VARCHAR(20), nickname VARCHAR(25))`,(err,result)=>{
+          if(err) throw err
+          res.send('succses')
+        })
       })
     }else{
       res.send('email is already in usage')
     }
   })
- 
 })
 
 app.post('/byId',(req,res)=>{
@@ -120,7 +126,102 @@ app.post('/deleteaccount',(req,res)=>{
   
 })
 
+app.post('/getPersonByEmail',(req,res)=>{
+  console.log(req.body)
+  const email = req.body.email
+  con.query(`SELECT * FROM registaredusers WHERE email = '${email}'`,(err,result)=>{
+    if(err) throw err
+    res.send(result)
+  })
+
+})
+
+app.post('/addfriend',(req,res)=>{
+  console.log(req.body)
+   const hm = ''
+   con.query(`insert into ${req.body.emailForTable1} (email,name,potourl,lastname,nickname)
+    VALUES('${req.body.info2.email}','${req.body.info2.firstname}','${req.body.info2.potorul}','${req.body.info2.lastname}','${req.body.info2.nickname}')`,(err,result)=>{
+
+    con.query(`insert into ${req.body.emailForTable2} (email,name,potourl,lastname,nickname)
+     VALUES('${req.body.info1.email}','${req.body.info1.firstname}','${req.body.info1.potourl}','${req.body.info1.lastname}','${req.body.info1.nickname}')`,(err,result)=>{
+      res.send('inserted')
+   })
+  })
+})
+
+app.post('/isfriend',(req,res)=>{
+  con.query(`SELECT * from ${req.body.tableName}friends where email = '${req.body.email}'`,(err,result)=>{
+    if(err){
+      console.log(err)
+    }
+    if(result.length == 0){
+      res.send('not friends')
+    }else{
+      res.send('friends')
+    }
+  })
+  
+})
+
+
+app.post('/removeFriend',(req,res)=>{
+  console.log(req.body)
+  con.query(`DELETE from ${req.body.emailForTable1} WHERE email = '${req.body.info2.email}'`,(err,result)=>{
+    if(err) console.log(err)
+    console.log(result)
+    con.query(`DELETE from ${req.body.emailForTable2} WHERE email = '${req.body.info1.email}'`,(err,result)=>{
+      if(err) console.log(err)
+        console.log(result)
+        res.send('waishala congs')
+    })
+  })
+})
+
+app.post('/getallfriend',(req,res)=>{
+  console.log(req.body.tableName)
+  con.query(`SELECT * from ${req.body.tableName}friends`,(err,result)=>{
+    console.log(result+'xddd')
+    res.send(result)
+  })
+
+})
+
+
+app.post('/getallfriendbyname',(req,res)=>{
+  console.log(req.body)
+  con.query(`SELECT * from ${req.body.tableName}friends where name LIKE '%${req.body.name}%' && lastname LIKE "%${req.body.lastname}%"`,(err,result)=>{
+    if(err){
+      console.log(err)
+    }
+  
+      if(result.length == 0){
+      
+        con.query(`SELECT * from ${req.body.tableName}friends where name LIKE '%${req.body.name}%'`,(err,result)=>{
+          console.log('nulia')
+          if(result.length == 0){
+            console.log('nulia2')
+            con.query(`SELECT * from ${req.body.tableName}friends where lastname LIKE '%${req.body.name}%'`,(err,result)=>{
+              console.log(req.body.lastname)
+            
+              res.send(result)
+            })
+          }else{
+            res.send(result)
+          }
+         
+        })
+      }else{
+        res.send(result)
+      }
+    
+  
+  })
+  
+})
+
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`)
+
+
   })
 

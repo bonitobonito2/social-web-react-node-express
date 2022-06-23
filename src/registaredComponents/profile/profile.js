@@ -86,7 +86,7 @@ const Profile = ()=>{
       <br />
       <button  onClick={()=>setChangeProfile(!changeProfile)} className={classes.buttonChangeProfile} >change profile picture</button>
       <br />
-      <button onClick={deleteAcountHandler} className={classes.button1} >delete my account</button>
+      {/* <button onClick={deleteAcountHandler} className={classes.button1} >delete my account</button> */}
 
         </div>
     </Fragment>

@@ -1,6 +1,6 @@
 .card{
     background: rgb(248, 246, 246);
-    width: 40%;
+    width: 30%;
     height: 10%;
     margin: 65px auto;
     display: -webkit-box;
@@ -18,20 +18,28 @@
 }
 
 .image{
-    width: 30%;
-    height: 30%;
-    border-radius: 5px;
+    width: 40%;
+    height: 40%;
+    
+    border-radius: 100%;
 }
 .cardDiv{
     align-self: center;
     width: fit-content;
     background: rgb(255, 252, 252);
     padding: 3px;
+    width: 40%;
     border-radius: 7px;
     box-shadow: 2px 2px 2px rgb(173, 172, 172);
 }
+
+.cardDiv p{
+    font-size: 15px;
+}
+
 .button{
-    width: 100%;
+    align-self: center;
+    width: 50%;
     background-color: #36ad36;
     color: white;
     padding: 14px 20px;
@@ -42,4 +50,29 @@
 }
 .button:hover{
     background-color: #155f15;
+}
+
+
+@media (max-width: 1000px){
+    .cardDiv{
+        width: 60%;
+        
+    }
+    .cardDiv p{
+        font-size: 12px;
+    }
+}
+@media (max-width: 600px){
+    .cardDiv p{
+        font-size: 10px;
+    }
+    .cardDiv{
+        width: 80%;
+    }
+    .image{
+        width: 50%;
+    }
+    .h2{
+        font-size: 14px;
+    }    
 }

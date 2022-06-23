@@ -11,7 +11,8 @@ const initialState = {
     },
 
     isLoggined : 0,
-    background  : ''
+    viewUserEmail : '',
+    needable : 1,
 }
 
 const storeManipulation = createSlice({
@@ -41,6 +42,14 @@ const storeManipulation = createSlice({
            state.person['email'] = action.payload['email']
            state.person['password'] = action.payload['password']
            state.person['potourl'] = action.payload['potorul']
+        },
+
+        setViewProfileEmail(state,action){
+            state.viewUserEmail = action.payload
+        },
+        changeneedable(state){
+            console.log('shemvedi')
+            state.needable +=1
         }
         
 

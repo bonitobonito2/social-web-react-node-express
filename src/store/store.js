@@ -13,6 +13,7 @@ const initialState = {
     isLoggined : 0,
     viewUserEmail : '',
     needable : 1,
+    chatWithEmail : ''
 }
 
 const storeManipulation = createSlice({
@@ -50,6 +51,9 @@ const storeManipulation = createSlice({
         changeneedable(state){
             console.log('shemvedi')
             state.needable +=1
+        },
+        chaterEmail(state,action){
+            state.chatWithEmail = action.payload
         }
         
 

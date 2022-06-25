@@ -1,18 +1,20 @@
+
+
 .chatMain{
-    overflow-y: scroll;
-    overflow-x: hidden;
-    position: fixed;
-    bottom: 0;
+   
+   overflow-y: scroll;
+     position: fixed;
+    bottom: 33px;
     left: 15px;
     padding: 2px;
     border: 1px solid black;
     width: 15vw;
-   height: 300px;
+   height: 270px;
     background-color: rgb(255, 255, 255);
     display: grid;
     grid-template-columns: auto;
     
-    row-gap: 2px;
+    row-gap: 2px; 
 }
 
 .chatMain1 {

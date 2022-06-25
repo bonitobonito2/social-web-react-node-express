@@ -36,6 +36,7 @@ const Friends = (props)=>{
                 setFriends([])
             }else{
                 setFriends(response.data)
+                
             }
         })
     },[myEmailForTable,needable])

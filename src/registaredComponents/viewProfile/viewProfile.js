@@ -41,12 +41,15 @@ const ViewProfile = (props)=>{
 
 
     const openChatHandler = ()=>{
+            setLoading(true)
             console.log(myEmail)
             console.log(emailOfPerson)
+            dispatch(functionsFromStore.chaterEmail(emailOfPerson))
             axios.post('http://localhost:5000/existtable',{senterEmail : myEmail, reciverEmail : emailOfPerson})
             .then(response=>{
                 console.log(response)
-                props.chat(state=>!state)
+                props.chat(true)
+                setLoading(false)
             })
          
     }

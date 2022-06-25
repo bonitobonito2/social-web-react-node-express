@@ -128,26 +128,61 @@ const emailTransform = (email) =>{
   }
   return myEmailForTable
 }
+
+
 app.post('/deleteaccount',(req,res)=>{
   const email = req.body.email
+  console.log('shemovedi')
   const tableEmail = emailTransform(email)
   con.query(`select email from registaredusers where id != ${req.body.id} `,(err,result)=>{
     if(err){
     }
+    // delete friends
     for (var i = 0; i < result.length; i++){
       let em = (emailTransform(result[i]['email']))
       con.query(`delete from ${em}friends WHERE email = "${email}"`,(err,result)=>{
         if(err) throw err
       })
     }
+    // delete chat
+    con.query(`select email from registaredusers where id != ${req.body.id}`,(err,result)=>{
+      if(err) console.log(chat)
+      for(var i = 0; i < result.length; i++){
+        const email2  = emailTransform(result[i].email)
+        const tableName1 =  tableEmail+'to'+email2+'chat'
+        const tableName2 =  email2+'to'+tableEmail+'chat'
+        con.query(`SHOW TABLES LIKE '${tableName1}'`,(req,result)=>{
+  
+          console.log(result+'xd')
+          if(result.length == 0){
+            console.log('nah')
+          }
+          if(result.length != 0){
+            con.query(`drop table ${tableName1}`,(err,result)=>{
+              con.query(`drop table ${tableName2}`,(err,result)=>{
+                console.log(tableName1,tableName2+'wasishala')
+              })
+            })
+          }
+        })
+     
+      }
+     
+  })
+
+
     con.query(`drop table ${tableEmail}friends`,(err,result)=>{
       con.query(`DELETE FROM registaredusers WHERE ID =${req.body.id} `,(err,result)=>{
-        if(err) throw err
+        if(err) console.log(err)
         res.send('yep')
       })
     })
    
   })
+
+
+  
+
  
  
 })

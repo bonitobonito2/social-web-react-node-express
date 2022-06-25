@@ -1,12 +1,14 @@
 .chatMainchat1 {
     float: left;
     height: fit-content;
+    padding: 5px;
   }
   .chatMainchat1 p {
     float: right;
-  
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+ 
     font-weight: 500;
-    font-size: 13px;
+    font-size: 11px;
     background-color: rgb(223, 225, 226);
     border-radius: 5px;
    

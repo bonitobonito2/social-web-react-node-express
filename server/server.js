@@ -21,12 +21,10 @@ con.connect(function(err) {
 });
 
 app.post('/login', (req, res) => {
-    console.log('Got body:', req.body);
        const email = req.body.email
        const password = req.body.password
        con.query(`select * from registaredUsers WHERE email = "${email.trim()}" && password = "${password.trim()}" `,(err,result,fields)=>{
         if(err) throw err
-        console.log(result)
         if(result.length == 0) res.send('failed registration')
         else res.send(result)
       })
@@ -60,14 +58,12 @@ app.post('/registration',(req,res) =>{
           res.send('err')
           throw err
         } 
-        console.log('user inserted')
         let newemail = ''
         for(var i = 0; i < email.length; i++){
           if(email[i] !== '.' & email[i] !== '@'){
             newemail+= email[i]
           }
         }
-        console.log(newemail)
         con.query(`CREATE TABLE ${newemail}friends 
         (email VARCHAR(30),
          name VARCHAR(30),
@@ -85,7 +81,6 @@ app.post('/registration',(req,res) =>{
 })
 
 app.post('/byId',(req,res)=>{
-  console.log(req.body)
   con.query(`SELECT * FROM registaredusers WHERE ID = '${req.body.id}'`,(err,result)=>{
     if(err)  res.send('err')
     res.send(result)
@@ -123,16 +118,42 @@ app.post('/updateImage',(req,res)=>{
   })
 })
 
+
+const emailTransform = (email) =>{
+  let myEmailForTable = ''
+  for(var i = 0; i < email.length; i++){
+      if(email[i] != '.' && email[i] != '@'){
+          myEmailForTable += email[i]
+      }
+  }
+  return myEmailForTable
+}
 app.post('/deleteaccount',(req,res)=>{
-  console.log(req.body)
-  con.query(`DELETE FROM registaredusers WHERE ID =${req.body.id} `,(err,result)=>{
-    if(err) throw err
-    res.send('yep')
+  const email = req.body.email
+  const tableEmail = emailTransform(email)
+  con.query(`select email from registaredusers where id != ${req.body.id} `,(err,result)=>{
+    if(err){
+    }
+    for (var i = 0; i < result.length; i++){
+      let em = (emailTransform(result[i]['email']))
+      con.query(`delete from ${em}friends WHERE email = "${email}"`,(err,result)=>{
+        if(err) throw err
+      })
+    }
+    con.query(`drop table ${tableEmail}friends`,(err,result)=>{
+      con.query(`DELETE FROM registaredusers WHERE ID =${req.body.id} `,(err,result)=>{
+        if(err) throw err
+        res.send('yep')
+      })
+    })
+   
   })
+ 
+ 
 })
 
 app.post('/getPersonByEmail',(req,res)=>{
-  console.log(req.body)
+
   const email = req.body.email
   con.query(`SELECT * FROM registaredusers WHERE email = '${email}'`,(err,result)=>{
     if(err) throw err
@@ -141,7 +162,7 @@ app.post('/getPersonByEmail',(req,res)=>{
 })
 
 app.post('/addfriend',(req,res)=>{
-  console.log(req.body)
+ 
    con.query(`insert into ${req.body.emailForTable1} (email,name,potourl,lastname,nickname)
       VALUES(
       '${req.body.info2.email}',
@@ -172,20 +193,20 @@ app.post('/isfriend',(req,res)=>{
 })
 
 app.post('/removeFriend',(req,res)=>{
-  console.log(req.body)
+ 
   con.query(`DELETE from ${req.body.emailForTable1} WHERE email = '${req.body.info2.email}'`,(err,result)=>{
     if(err) console.log(err)
-    console.log(result)
+   
     con.query(`DELETE from ${req.body.emailForTable2} WHERE email = '${req.body.info1.email}'`,(err,result)=>{
       if(err) console.log(err)
-        console.log(result)
+       
         res.send('waishala congs')
     })
   })
 })
 
 app.post('/getallfriend',(req,res)=>{
-  console.log(req.body.tableName)
+ 
   con.query(`SELECT * from ${req.body.tableName}friends`,(err,result)=>{
     console.log(result+'xddd')
     res.send(result)
@@ -193,18 +214,18 @@ app.post('/getallfriend',(req,res)=>{
 })
 
 app.post('/getallfriendbyname',(req,res)=>{
-  console.log(req.body)
+ 
   con.query(`SELECT * from ${req.body.tableName}friends where name LIKE '%${req.body.name}%' && lastname LIKE "%${req.body.lastname}%"`,(err,result)=>{
     if(err){
       console.log(err)
     }
       if(result.length == 0){
         con.query(`SELECT * from ${req.body.tableName}friends where name LIKE '%${req.body.name}%'`,(err,result)=>{
-          console.log('nulia')
+        
           if(result.length == 0){
-            console.log('nulia2')
+           
             con.query(`SELECT * from ${req.body.tableName}friends where lastname LIKE '%${req.body.name}%'`,(err,result)=>{
-              console.log(req.body.lastname) 
+             
               res.send(result)
             })
           }else{
@@ -217,6 +238,89 @@ app.post('/getallfriendbyname',(req,res)=>{
   })
 })
 
+
+app.post('/getallpeoplebyinfo',(req,res)=>{
+  console.log(req.body.name)
+  con.query(`SELECT * from registaredusers where firstname LIKE '%${req.body.name}%' && lastname LIKE "%${req.body.lastname}%"`,(err,result)=>{
+    if(err){
+      console.log(err)
+    }
+   
+      if(result.length == 0){
+        con.query(`SELECT * from registaredusers where firstname LIKE '%${req.body.name}%'`,(err,result)=>{
+          console.log('alo')
+          console.log(result)
+          if(result.length == 0){
+            console.log(result)
+            con.query(`SELECT * from registaredusers where lastname LIKE '%${req.body.name}%'`,(err,result)=>{
+             
+              res.send(result)
+            })
+          }else{
+            console.log(result)
+            res.send(result)
+          }
+        })
+      }else{
+        res.send(result)
+      }
+  })
+})
+
+app.post('/existtable',(req,res)=>{
+  const sentTotr = emailTransform(req.body.senterEmail)
+  const reciver = emailTransform(req.body.reciverEmail)
+  const tableName1 = sentTotr+'TO'+reciver+'Chat'
+  const tableName2 = reciver+'TO'+sentTotr+'Chat'
+  con.query(`SHOW TABLES LIKE '${tableName1}'`,(err,result)=>{
+    if(result.length == 0){
+      con.query(`SHOW TABLES LIKE '${tableName2}'`,(err,result)=>{
+      if(result.length ==0){
+        con.query(`CREATE TABLE ${tableName1} (mysms VARCHAR(255), recivedsms VARCHAR(255))`,(err,result)=>{
+          if(err) throw err
+          con.query(`CREATE TABLE ${tableName2} (mysms VARCHAR(255), recivedsms VARCHAR(255))`,(err,result)=>{
+            if(err) throw err
+                res.send('tables created')
+          })
+        })
+      }
+    
+    })
+    }else{
+      res.send('tables already exists')
+    }
+  })
+
+})
+
+app.post('/sendsms',(req,res)=>{
+  console.log(req.body)
+  const senterEmail = emailTransform(req.body.senderEmail)
+  const reciverEmail = emailTransform(req.body.reciverEmail)
+  const sms = emailTransform(req.body.sms)
+  const table1Name = senterEmail + 'TO' + reciverEmail+'Chat'
+  const table2Name = reciverEmail + 'to' + senterEmail + 'Chat'
+  con.query(`insert into ${table1Name} (mysms,recivedsms) VALUES('${sms}','${null}')`,(err,result)=>{
+    if(err) console.log(err)
+    console.log(result)
+    con.query(`insert into ${table2Name} (mysms,recivedsms) VALUES('${null}','${sms}')`,(err,result)=>{
+      if(err) console.log(err)
+      console.log(result)
+      res.send('sent')
+    })
+  })
+})
+
+app.post('/getchat',(req,res)=>{
+  console.log(req.body)
+  const senterEmail = emailTransform(req.body.senderEmail)
+  const reciverEmail = emailTransform(req.body.reciverEmail)
+  const table1Name = senterEmail + 'TO' + reciverEmail+'Chat'
+  con.query(`select * from ${table1Name}`,(err,result)=>{
+    if(err) console.log(err)
+    res.send(result)
+  })
+})
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`)
 

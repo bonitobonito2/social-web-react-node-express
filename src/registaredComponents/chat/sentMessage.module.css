@@ -1,0 +1,13 @@
+.chatMainchat1 {
+    float: left;
+    height: fit-content;
+  }
+  .chatMainchat1 p {
+    float: right;
+  
+    font-weight: 500;
+    font-size: 13px;
+    background-color: rgb(223, 225, 226);
+    border-radius: 5px;
+   
+  }

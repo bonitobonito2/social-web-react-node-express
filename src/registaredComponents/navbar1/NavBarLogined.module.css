@@ -42,19 +42,18 @@
   }
 
   .img{
-    position: relative;
-    left: 2px;
+    float: right;
     height: 100%;
     border-radius: 40px;
     display: inline;
-    opacity:0.7;
-    filter:alpha(opacity=70); 
+    opacity:1;
+    filter:alpha(opacity=100); 
   }
 
   .img:hover{
   
-    opacity:1.5;
-  filter:alpha(opacity=150); 
+    opacity:0.8;
+  filter:alpha(opacity=70); 
   }
 
   .navBar p{
@@ -66,3 +65,38 @@
     
     display: inline;
   }
+
+.searchBar{
+ 
+  background: #fff;
+    width: 500px;
+  float: left;
+  height: fit-content;
+    display: -webkit-box;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+            flex-direction: column;
+    border-radius: 4px;
+    box-shadow: 0 2px 25px rgba(0, 0, 0, 0.2);  
+ 
+}
+ .logout{
+  float: left;
+  background-image: url("https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/OOjs_UI_icon_logOut-ltr.svg/1200px-OOjs_UI_icon_logOut-ltr.svg.png");
+ }
+ .logout img{
+  height: 70%;
+  position: relative;
+  top: 8px;
+  left: 5px;
+  display: inline;
+  opacity:0.7;
+  filter:alpha(opacity=70); 
+  cursor: pointer;
+ }
+
+ .logout :hover{
+  opacity:1.5;
+  filter:alpha(opacity=150); 
+ }

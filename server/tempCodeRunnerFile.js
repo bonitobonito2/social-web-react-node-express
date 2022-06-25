@@ -1,1 +1,1 @@
-lastname
+/sendsms

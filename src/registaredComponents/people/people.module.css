@@ -19,3 +19,50 @@
     position: relative;
     bottom: 50px;
 }
+
+.search{
+    display: grid;
+    grid-template-columns:  40px 80%;
+    width: 20vw;
+    position: fixed;
+    top: 1vh;
+    left: 40vw;
+    z-index: 500;
+    column-gap: 1px;
+}
+
+.search input {
+    font-size: 16px;
+    display: block;
+    font-family: 'Rubik', sans-serif;
+    width: 100%;
+    padding: 10px 1px;
+    border: 0;
+  
+    outline: none;
+    -webkit-transition: all .2s;
+    transition: all .2s;
+    background: rgb(255, 255, 255);
+    border-radius: 5px;
+   
+  }
+
+ .search img{
+    width: 40px;
+    height: 100%;
+    border-radius: 5px;
+    cursor: pointer;
+    opacity:1.5;
+  filter:alpha(opacity=150); 
+ } 
+
+ 
+ .search img:hover{
+    width: 40px;
+    height: 100%;
+    border-radius: 5px;
+    cursor: pointer;
+
+    opacity:0.8;
+  filter:alpha(opacity=180); 
+ } 

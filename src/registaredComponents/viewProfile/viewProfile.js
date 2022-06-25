@@ -18,7 +18,6 @@ const ViewProfile = (props)=>{
         setLoading(true)
         axios.post('http://localhost:5000/getPersonByEmail',{email : emailOfPerson})
         .then(response=>{
-            console.log(response.data[0])
             setPersonInformation(response.data[0])
             let myEmailForTable = ''
             for(var i = 0; i < myEmail.length; i++){
@@ -28,8 +27,6 @@ const ViewProfile = (props)=>{
              }
             axios.post('http://localhost:5000/isfriend',{tableName: myEmailForTable, email : emailOfPerson})
             .then(response=>{
-                console.log(response)
-                console.log('zzzzzzzzzzzzzzzzzzzzzz')
                 if(response.data=='not friends'){
                     setFriends(false)
                     setLoading(false)
@@ -43,7 +40,18 @@ const ViewProfile = (props)=>{
     },[friends,emailOfPerson])
 
 
-  
+    const openChatHandler = ()=>{
+            console.log(myEmail)
+            console.log(emailOfPerson)
+            axios.post('http://localhost:5000/existtable',{senterEmail : myEmail, reciverEmail : emailOfPerson})
+            .then(response=>{
+                console.log(response)
+                props.chat(state=>!state)
+            })
+         
+    }
+
+
     const addFriendHandler = ()=>{
         setLoading(true)
         let myEmailForTable = ''
@@ -67,7 +75,6 @@ const ViewProfile = (props)=>{
         emailForTable1 : myEmailForTable,
         emailForTable2 : userEmailForTable})
         .then(response=>{
-            console.log(response)
             dispatch(functionsFromStore.changeneedable())
             setFriends(true)
             setLoading(false)
@@ -98,7 +105,6 @@ const ViewProfile = (props)=>{
             emailForTable2 : userEmailForTable})
             .then(response=>{
                 dispatch(functionsFromStore.changeneedable())
-                console.log(response)
                 setFriends(false)
                 setLoading(false)
             })
@@ -136,13 +142,13 @@ const ViewProfile = (props)=>{
             <button onClick={removeFriendHandler}  className={classes.button} >remove from friends</button>
             <br/>
             <br/>
-            <button  className={classes.button} >send sms</button>
+            <button id='btn' onClick={openChatHandler} className={classes.button} >start chat</button>
             
              </div>}
      
       <br/>
     
-      <button onClick={backHandler}  className={classes.button1} >back</button>
+      <button  onClick={backHandler}  className={classes.button1} >back</button>
         </div>
     </div>
 }

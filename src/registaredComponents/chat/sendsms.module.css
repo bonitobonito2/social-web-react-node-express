@@ -1,0 +1,40 @@
+.sendDiv{
+    position: fixed;
+    bottom: 1px;
+    width: 14vw;
+    float: left;
+    display: grid;
+    grid-template-columns: 70% 30%;
+}
+
+.sendDiv input{
+    font-size: 10px;
+    display: block;
+    font-family: 'Rubik', sans-serif;
+    width: 100%;
+    padding: 10px 1px;
+    border: 0;
+    border-bottom: 1px solid #747474;
+    outline: none;
+    -webkit-transition: all .2s;
+    transition: all .2s;
+}
+
+.sendDiv button{
+    width: 100%;
+    border: none;
+    
+    font-family: 'Rubik', sans-serif;
+    cursor: pointer;
+    text-transform: uppercase;
+    background: #e8e9ec;
+    color: #777;
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 0;
+    letter-spacing: 0.2px;
+    outline: 0;
+    -webkit-transition: all .3s;
+    transition: all .3s;
+}
+
+

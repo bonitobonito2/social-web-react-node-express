@@ -1,0 +1,71 @@
+.personDiv {
+    padding-top: 5px;
+    padding-left: 5px;
+    padding-right:  5px;
+    border-radius: 2px;
+    height: fit-content;
+    position: fixed;
+    left: 14px;
+    bottom: 300px;
+    margin-top: 15px;
+    width: 15vw;
+    background: rgb(255, 255, 255);
+    display: grid;
+    grid-template-columns: 20% 70% 10%;
+    place-items: center;
+    box-shadow: 1px 1px 10px rgb(180, 181, 185);
+}
+
+.personName {
+ margin-right: 50px;
+ width: 100%;
+  display: inline-block;
+  margin: 0 auto;
+}
+
+.personName p{
+font-size: 14px;
+font-weight: 550;
+position: relative;
+left: 1vw;
+ }
+ 
+
+.closeChat{
+  display: inline-block;
+  margin: 10px;
+  height: 100%;
+}
+
+.profilepic{
+  width: 100%;
+  border-radius: 100px;
+}
+
+.closeBtn{
+    width: 100%;
+    border: none;
+    width: 30px;
+    height: 30px;
+    font-size: 20px;
+    font-family: 'Rubik', sans-serif;
+    cursor: pointer;
+    text-transform: uppercase;
+    background: #e8e9ec;
+    color: #777;
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 0;
+    letter-spacing: 0.2px;
+    outline: 0;
+    -webkit-transition: all .3s;
+    transition: all .3s;
+}
+
+.closeBtn:hover{
+  
+  background-color: rgb(182, 183, 190);
+  color: rgb(229, 235, 241);
+  cursor: pointer;
+}
+
+

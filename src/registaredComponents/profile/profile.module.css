@@ -88,9 +88,11 @@
   
 }
 .image{
-    width: 30%;
-    height: 30%;
-    border-radius: 50px;
+    width: 12vw;
+    height: 22vh;
+    border-radius: 100px;
+    
+
 
 }
 

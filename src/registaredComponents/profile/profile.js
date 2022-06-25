@@ -20,7 +20,7 @@ const Profile = ()=>{
        if(mhm){
         if(mhm.trim() == 'yes'){
             
-            axios.post('http://localhost:5000/deleteaccount',{id : localStorage.getItem('ID')})
+            axios.post('http://localhost:5000/deleteaccount',{id : localStorage.getItem('ID'), email : information['email']})
             .then(response=>{
             console.log(response)    
             localStorage.setItem('ID',0)
@@ -86,7 +86,7 @@ const Profile = ()=>{
       <br />
       <button  onClick={()=>setChangeProfile(!changeProfile)} className={classes.buttonChangeProfile} >change profile picture</button>
       <br />
-      {/* <button onClick={deleteAcountHandler} className={classes.button1} >delete my account</button> */}
+      <button onClick={deleteAcountHandler} className={classes.button1} >delete my account</button>
 
         </div>
     </Fragment>

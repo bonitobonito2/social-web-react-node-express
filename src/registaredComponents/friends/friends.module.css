@@ -60,6 +60,7 @@ top: 5px;
 
 .img {
     width: 20%;
+    height: 85%;
     border-radius: 50px;
     float: left;
     position: relative;

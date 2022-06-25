@@ -2,6 +2,7 @@ import React,{useState} from "react";
 import Classes from './NavBarLogined.module.css'
 import { functionsFromStore } from "../../store/store";
 import {useSelector,useDispatch} from 'react-redux'
+
 import axios from "axios";
 const NavBarLogined = (props)=>{
     const dispatch = useDispatch()
@@ -36,18 +37,19 @@ const NavBarLogined = (props)=>{
         props.layout('people')
         setActived('people')
     }
+    
     const friendsHandler = ()=>{
         props.setActivatedFriends(state => !state)
     }
    
     return<div className={Classes.navBar}>
-    
-    <li><a  onClick={navLogoutHandler} class = {actived ==='logout' && Classes.active} href="#">logout</a></li>
-    <li><a onClick = {friendsHandler} class = {props.activatedFriends && Classes.active}  href="#">friends</a></li>
-    <li><a  onClick={navProfileHandler} class = {actived ==='profile' && Classes.active} href="#">profile</a></li>
+      <img onClick={navProfileHandler} className={Classes.img} src = {picurl.potourl}/>
+    <li onClick={navLogoutHandler} className={Classes.logout}><img alt="log out" src="https://www.seekpng.com/png/full/41-413813_shutdown-button-clipart-arrow-icon-logout-white-png.png" /></li>
+   
+    <li><a id="friends" onClick = {friendsHandler} class = {props.activatedFriends && Classes.active}  href="#">friends</a></li>
     <li><a onClick = {navPeopleHandler} class = {actived === 'people' && Classes.active}  href="#">people</a></li>
  
-    <img onClick={navProfileHandler} className={Classes.img} src = {picurl.potourl}/>
+   
 
     {/* <li><a onClick={navRegistarHandler} class = {actived ==='upload' && Classes.active} href="#">uoload</a></li>
     <li><a onClick={navRegistarHandler} class = {actived ==='people' && Classes.active} href="#">people</a></li> */}

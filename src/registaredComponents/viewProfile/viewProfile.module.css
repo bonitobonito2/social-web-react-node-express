@@ -1,6 +1,7 @@
 .card{
     background: #fff;
     width: 35%;
+    padding: 15px;
     margin: 100px auto;
     display: -webkit-box;
     
@@ -88,10 +89,11 @@
   
 }
 .image{
-    width: 30%;
-    height: 30%;
+    width: 15vw;
+    height: 25vh;
+    border-radius: 100px;
 
-    border-radius: 50px;
+   
 
 }
 

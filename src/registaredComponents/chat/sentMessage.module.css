@@ -6,7 +6,7 @@
   .chatMainchat1 p {
     float: right;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
- 
+    padding: 5px;
     font-weight: 500;
     font-size: 11px;
     background-color: rgb(223, 225, 226);

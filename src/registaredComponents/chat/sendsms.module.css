@@ -4,30 +4,30 @@
     left: 15px;
     width: 15vw;
     float: left;
-    border-radius: 5px;
+ 
     display: grid;
     background-color: #777;
     grid-template-columns: 70% 30%;
 }
 
 .sendDiv input{
-    font-size: 10px;
+    font-size: 13px;
     display: block;
     font-family: 'Rubik', sans-serif;
     width: 100%;
     padding: 10px 1px;
+    background-color: rgb(217, 221, 221);
     border: 0;
     border-bottom: 1px solid #747474;
     outline: none;
     -webkit-transition: all .2s;
     transition: all .2s;
-    border-radius: 5px;
+  
 }
 
 .sendDiv button{
     width: 100%;
     border: none;
-    border-radius: 5px;
     font-family: 'Rubik', sans-serif;
     cursor: pointer;
     text-transform: uppercase;

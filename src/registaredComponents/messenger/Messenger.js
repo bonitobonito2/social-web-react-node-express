@@ -14,6 +14,7 @@ export default function Messenger() {
   const [chat, setChat] = useState();
   const sms = useRef();
   const myEmail = useSelector((state) => state.person.email);
+  const [nameForClass, setNameForClass] = useState('')
   const messagesEndRef = useRef(null);
   const scrollToBottom = () => {
     messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
@@ -58,6 +59,7 @@ export default function Messenger() {
                 console.log(response.data + "xdxdxd");
                 scrollToBottom();
                 setChatPerson(email);
+                setNameForClass(email)
               });
             scrollToBottom();
           });
@@ -83,6 +85,7 @@ export default function Messenger() {
       })
       .then((response) => {
         console.log(response.data);
+      
         handler(chatPerson);
         scrollToBottom();
       });
@@ -116,7 +119,7 @@ export default function Messenger() {
         <center>
           {friends.map((state) => (
             <div className={classes["card-item"]}>
-              <button onClick={() => handler(state.email)}>
+              <button className={nameForClass == state.email ? classes.clicked : classes.notClicked} onClick={() => handler(state.email)}>
                 <img className={classes.img} src={state.potourl} />
                 <h3>
                   {state.name} {state.lastname}

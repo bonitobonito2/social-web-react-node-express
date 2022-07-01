@@ -80,6 +80,8 @@ const Profile = () => {
 
       <div className={classes.card}>
         <center>
+          <h2>my profile</h2>
+          <br/>
           <img className={classes.image} src={imagelinkk} />
           <br />
           <h2>

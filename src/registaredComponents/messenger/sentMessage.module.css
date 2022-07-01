@@ -9,7 +9,8 @@
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
   padding: 5px;
   font-size: 12px;
-  background-color: rgb(221, 224, 226);
+  background-color: rgb(112, 119, 124);
+  color: white;
   border-radius: 5px;
   max-width: 20vw;
   word-wrap: break-word;

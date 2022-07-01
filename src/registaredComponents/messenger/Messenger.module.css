@@ -18,7 +18,7 @@
 
   height: 100vh;
 
-  background-color: azure;
+  background-color: rgb(255, 255, 255);
   display: inline-grid;
   align-items: flex-start;
   grid-template-columns: auto;
@@ -40,16 +40,6 @@
   height: fit-content;
   text-align: center;
 }
-.card-item button {
-  background-color: azure;
-  width: 100%;
-  height: 8.5vh;
-  text-align: center;
-  font-size: 15px;
-  font-style: inherit;
-  font-family: "Courier New", Courier, monospace;
-  border: hidden;
-}
 .card-item button h3 {
   font-weight: 550;
   float: inline-start;
@@ -61,7 +51,7 @@
   color: rgba(112, 109, 109, 0.918);
 }
 .card-item button:hover {
-  background-color: rgba(230, 233, 235, 0.925);
+  background-color: rgba(199, 203, 206, 0.925);
   color: rgb(20, 19, 19);
   cursor: pointer;
 }
@@ -149,4 +139,28 @@
 
   grid-template-columns: auto;
   row-gap: 2px;
+}
+.clicked { 
+  background-color: rgba(199, 203, 206, 0.925);
+  color: rgb(20, 19, 19);
+  cursor: pointer;
+  width: 100%;
+  height: 8.5vh;
+  text-align: center;
+  font-size: 15px;
+  font-style: inherit;
+  font-family: "Courier New", Courier, monospace;
+  border: hidden;
+  
+}
+
+.notClicked{
+  background-color: rgb(255, 255, 255);
+  width: 100%;
+  height: 8.5vh;
+  text-align: center;
+  font-size: 15px;
+  font-style: inherit;
+  font-family: "Courier New", Courier, monospace;
+  border: hidden;
 }

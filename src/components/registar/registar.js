@@ -17,7 +17,7 @@ const Registar = () => {
         nickname: nickname,
         email: email,
         password: password,
-        file: formData,
+        
       })
       .then((response) => {
         console.log(response);

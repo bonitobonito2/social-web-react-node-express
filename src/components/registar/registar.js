@@ -10,9 +10,6 @@ const Registar = () => {
   const registration = (namee, lastname, nickname, email, password) => {
     setError(false);
     setErorSms("email is already in usage");
-    const formData = new FormData();
-    formData.append("file", file);
-    formData.append("fileName", fileName);
     axios
       .post("http://localhost:5000/registration", {
         name: namee,

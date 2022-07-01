@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useDispatch } from "react-redux";
-import {useNavigate} from 'react-router-dom'
+import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { functionsFromStore } from "../../store/store";
 import { useRef } from "react";
@@ -9,12 +9,12 @@ import classes from "./friends.module.css";
 
 const Friends = (props) => {
   const friendName = useRef();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const myEmail = useSelector((state) => state.person.email);
   const [friends, setFriends] = useState([]);
   const dispath = useDispatch();
   let needable = useSelector((state) => state.needable);
-  
+
   let myEmailForTable = "";
   for (var i = 0; i < myEmail.length; i++) {
     if (myEmail[i] != "." && myEmail[i] != "@") {
@@ -22,8 +22,7 @@ const Friends = (props) => {
     }
   }
   const profileViewHandler = (email) => {
-  
-    navigate(`/people/${email}`,{replace: true})
+    navigate(`/people/${email}`, { replace: true });
     dispath(functionsFromStore.setViewProfileEmail(email));
   };
   useEffect(() => {

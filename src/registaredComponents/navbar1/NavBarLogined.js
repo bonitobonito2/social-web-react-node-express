@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import {NavLink,  useNavigate} from 'react-router-dom'
+import { NavLink, useNavigate } from "react-router-dom";
 import Classes from "./NavBarLogined.module.css";
 import { functionsFromStore } from "../../store/store";
 import { useSelector, useDispatch } from "react-redux";
 
 const NavBarLogined = (props) => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const picurl = useSelector((state) => state.person);
   const navLogoutHandler = () => {
@@ -26,14 +26,12 @@ const NavBarLogined = (props) => {
         potorul: "",
       })
     );
-    navigate('/login', {replace : true})
+    navigate("/login", { replace: true });
   };
 
   const navProfileHandler = () => {
-    navigate('/profile', {replace : true})
+    navigate("/profile", { replace: true });
   };
-
-
 
   const friendsHandler = () => {
     props.setActivatedFriends((state) => !state);
@@ -64,11 +62,21 @@ const NavBarLogined = (props) => {
         </a>
       </li>
       <li>
-        <NavLink className={(navData) =>navData.isActive ? Classes.active : ''} to= '/people' >people</NavLink>
+        <NavLink
+          className={(navData) => (navData.isActive ? Classes.active : "")}
+          to="/people"
+        >
+          people
+        </NavLink>
       </li>
 
       <li>
-        <NavLink className={(navData) =>navData.isActive ? Classes.active : ''} to= '/messenger' >messenger</NavLink>
+        <NavLink
+          className={(navData) => (navData.isActive ? Classes.active : "")}
+          to="/messenger"
+        >
+          messenger
+        </NavLink>
       </li>
     </div>
   );

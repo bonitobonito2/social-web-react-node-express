@@ -12,11 +12,12 @@ const ChatPerson = (props) => {
         <img className={classes.profilepic} src={props.image} />
       </div>
       <div className={classes.personName}>
-        <p>{props.name} {props.lastname}</p>
+        <p>
+          {props.name} {props.lastname}
+        </p>
       </div>
 
-      <div className={classes.personChat}>
-      </div>
+      <div className={classes.personChat}></div>
     </div>
   );
 };

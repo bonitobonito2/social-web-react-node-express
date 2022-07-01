@@ -7,16 +7,13 @@ import { useSelector } from "react-redux";
 import { functionsFromStore } from "../../store/store";
 import Card from "./card";
 const People = (props) => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const [people, setPeople] = useState([]);
   const [loading, setLoading] = useState(false);
   const inputInformation = useRef();
   const userGmail = useSelector((state) => state.person.email);
 
-
-
   useEffect(() => {
-    
     axios
       .post("http://localhost:5000/byId", { id: localStorage.getItem("ID") })
       .then((response) => {
@@ -25,8 +22,6 @@ const People = (props) => {
         dispatch(
           functionsFromStore.changeUserInformationPlus(response.data[0])
         );
-      
-      
       });
   }, []);
 

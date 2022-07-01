@@ -1,33 +1,25 @@
-import React, { useState } from "react";
-import {NavLink} from 'react-router-dom'
+import React from "react";
+import { NavLink } from "react-router-dom";
 import Classes from "./NavBar.module.css";
 
-const NavBar = (props) => {
-  const [actived, setActived] = useState("login");
-  const navLoginHandler = () => {
-    props.layout("login");
-    setActived("login");
-  };
-
-  const navRegistarHandler = () => {
-    props.layout("registar");
-    setActived("registar");
-  };
+const NavBar = () => {
   return (
     <div className={Classes.navBar}>
       <li>
-        <NavLink className={(navData) =>navData.isActive ? Classes.active : ''} to='/login' >login</NavLink>
-        {/* <a
-          onClick={navLoginHandler}
-          class={actived === "login" && Classes.active}
-          href="#"
+        <NavLink
+          className={(navData) => (navData.isActive ? Classes.active : "")}
+          to="/login"
         >
           login
-        </a> */}
+        </NavLink>
       </li>
       <li>
-      <NavLink className={(navData) =>navData.isActive ? Classes.active : ''} to='/registar' >registar</NavLink>
-         
+        <NavLink
+          className={(navData) => (navData.isActive ? Classes.active : "")}
+          to="/registar"
+        >
+          registar
+        </NavLink>
       </li>
     </div>
   );

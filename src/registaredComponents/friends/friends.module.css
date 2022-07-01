@@ -1,89 +1,84 @@
-.card{
-    position: fixed;
-    top: 8vh;
-    right:  0;
-    width: 20vw;
-    max-height: 100vh;
-    z-index: 10;
-    border: 1px solid rgb(204, 196, 196);
-    background-color: rgb(255, 255, 255);
+.card {
+  position: fixed;
+  top: 8vh;
+  right: 0;
+  width: 20vw;
+  max-height: 100vh;
+  z-index: 10;
+  border: 1px solid rgb(204, 196, 196);
+  background-color: rgb(255, 255, 255);
   display: inline-grid;
-    align-items: flex-start;
-    grid-template-columns: auto ;
-   
-    overflow-y: scroll;
-    row-gap: 0px;
-    padding-bottom: 10px;
-    border-radius: 5px;
+  align-items: flex-start;
+  grid-template-columns: auto;
+
+  overflow-y: scroll;
+  row-gap: 0px;
+  padding-bottom: 10px;
+  border-radius: 5px;
 }
 
-.card-item{
-
-    width: 90%;
-    height: 65px;
-    text-align: center;
-    box-shadow: 0px 1px 1px 1px rgb(216, 213, 213);
+.card-item {
+  width: 90%;
+  height: 65px;
+  text-align: center;
+  box-shadow: 0px 1px 1px 1px rgb(216, 213, 213);
 }
-.card-itemh{
-    width: 100%;
-    height: 30px;
-    height: fit-content;
-    text-align: center;
+.card-itemh {
+  width: 100%;
+  height: 30px;
+  height: fit-content;
+  text-align: center;
 }
-.card-item button{
-    background-color: rgb(255, 255, 255);
-    width: 100%;
-    height: 8.5vh;
-    text-align: center;
-    font-size: 15px;
-    font-style: inherit;
-    font-family: 'Courier New', Courier, monospace;
-    border: 1px solid rgb(228, 222, 222);
-   
+.card-item button {
+  background-color: rgb(255, 255, 255);
+  width: 100%;
+  height: 8.5vh;
+  text-align: center;
+  font-size: 15px;
+  font-style: inherit;
+  font-family: "Courier New", Courier, monospace;
+  border: 1px solid rgb(228, 222, 222);
 }
-.card-item button h3{
-font-weight: 550;
-float: inline-start;
-position: relative;
-top: 5px;
-   
+.card-item button h3 {
+  font-weight: 550;
+  float: inline-start;
+  position: relative;
+  top: 5px;
 }
-.card-itemh h2{
-    position: relative;
-    color: rgba(112, 109, 109, 0.918);
-    box-shadow: 0px 2px 0px rgb(78, 77, 77);
+.card-itemh h2 {
+  position: relative;
+  color: rgba(112, 109, 109, 0.918);
+  box-shadow: 0px 2px 0px rgb(78, 77, 77);
 }
-.card-item button:hover{
-    background-color: rgb(121, 116, 116);
-    color: white;
-    cursor: pointer;
+.card-item button:hover {
+  background-color: rgb(121, 116, 116);
+  color: white;
+  cursor: pointer;
 }
 
 .img {
-    width: 20%;
-    height: 85%;
-    border-radius: 50px;
-    float: left;
-    position: relative;
-    left: 2px;
-    
+  width: 20%;
+  height: 85%;
+  border-radius: 50px;
+  float: left;
+  position: relative;
+  left: 2px;
 }
-.inputDiv{
-    padding-bottom: 6px;
-    padding-top: 5px;
+.inputDiv {
+  padding-bottom: 6px;
+  padding-top: 5px;
 }
 .inputDiv input {
-    font-size: 16px;
-    display: block;
-    font-family: 'Rubik', sans-serif;
-    width: 80%;
-    padding: 10px 1px;
-    border: 0;
-   
-    outline: none;
-    -webkit-transition: all .2s;
-    transition: all .2s;
-    background: rgb(226, 223, 223);
-    border-radius: 5px;
-   
-  }
+  font-size: 16px;
+  display: block;
+  font-family: "Rubik", sans-serif;
+  width: 80%;
+  padding: 10px 1px;
+  border: 0;
+
+  outline: none;
+  -webkit-transition: all 0.2s;
+  transition: all 0.2s;
+  background: rgb(226, 223, 223);
+  border-radius: 5px;
+}

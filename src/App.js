@@ -29,9 +29,9 @@ function App() {
       <Fragment>
         <NavBar />
         <Routes>
-          <Route path="/login" element ={<Login />} />
-          <Route path="/registar" element ={<Registar />} />
-          <Route path="*" element = {<Navigate to='/login' />} />  
+          <Route path="/login" element={<Login />} />
+          <Route path="/registar" element={<Registar />} />
+          <Route path="*" element={<Navigate to="/login" />} />
         </Routes>
       </Fragment>
     );

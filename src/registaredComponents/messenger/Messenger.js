@@ -12,7 +12,6 @@ export default function Messenger() {
   const [friends, setFriends] = useState([]);
   const [chater, setChater] = useState();
   const [chat, setChat] = useState();
-  const [change, setChanger] = useState(false);
   const sms = useRef();
   const myEmail = useSelector((state) => state.person.email);
   const messagesEndRef = useRef(null);

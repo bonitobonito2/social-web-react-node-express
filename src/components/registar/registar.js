@@ -7,15 +7,6 @@ const Registar = () => {
   const [isLoading, setIsloading] = useState(false);
   const [error, setError] = useState(false);
   const [erorSMS, setErorSms] = useState("");
-  const [file, setFile] = useState();
-  const [fileName, setFileName] = useState("");
-  const savefile = (e) =>{
-    setFile(e.target.files[0]);
-    setFileName(e.target.files[0].name);
-  
-  }
-  console.log(fileName)
-  console.log(file)
   const registration = (namee, lastname, nickname, email, password) => {
     setError(false);
     setErorSms("email is already in usage");
@@ -29,7 +20,7 @@ const Registar = () => {
         nickname: nickname,
         email: email,
         password: password,
-        file : formData
+        file: formData,
       })
       .then((response) => {
         console.log(response);
@@ -161,9 +152,6 @@ const Registar = () => {
               placeholder="Password"
               autocomplete="new-password"
             />
-          </div>
-          <div class="input-field">
-          <input type="file" onChange={savefile} />
           </div>
         </div>
         <div class="action">

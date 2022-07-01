@@ -42,15 +42,15 @@ const Body = (props) => {
       {activatedFriends && <Friends layout={setLayout} />}
 
       <Routes>
-        <Route path="/" element = {<Navigate to='/profile' />} />
+        <Route path="/" element={<Navigate to="/profile" />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/people" element={<People />} />
         <Route
           path="/people/:gmail"
           element={<ViewProfile chat={setActivChat} />}
         />
-          <Route path="/messenger" element={<Messenger />} />
-          <Route path="*" element = {<Navigate to='/profile' />} />  
+        <Route path="/messenger" element={<Messenger />} />
+        <Route path="*" element={<Navigate to="/profile" />} />
       </Routes>
     </Fragment>
   );

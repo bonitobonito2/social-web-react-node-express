@@ -1,25 +1,23 @@
 .chatMainchat {
-    height: fit-content;
-    padding: 5px;
-  }
-  .chatMainchat p {
-    float: left;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    position: relative;
-    left: 7px;
-    padding: 5px;  
-    font-size: 12px;
-    background-color: rgb(221, 224, 226);
-    border-radius: 5px;
-    max-width: 20vw;
-    word-wrap:  break-word;
-  
-   
-  }
+  height: fit-content;
+  padding: 5px;
+}
+.chatMainchat p {
+  float: left;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  position: relative;
+  left: 7px;
+  padding: 5px;
+  font-size: 12px;
+  background-color: rgb(221, 224, 226);
+  border-radius: 5px;
+  max-width: 20vw;
+  word-wrap: break-word;
+}
 
-  .chatPic{
-    float: left;
-    width: 5%;
-    display: inline;
-    border-radius: 100px;
-  }
+.chatPic {
+  float: left;
+  width: 5%;
+  display: inline;
+  border-radius: 100px;
+}

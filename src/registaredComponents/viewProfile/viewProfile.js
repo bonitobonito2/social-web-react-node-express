@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux/es/exports";
+import {useNavigate} from 'react-router-dom'
 import { functionsFromStore } from "../../store/store";
 import loadingClasses from "../../loading/loading.module.css";
 import classes from "./viewProfile.module.css";
 
 const ViewProfile = (props) => {
+  const navigate = useNavigate()
   const emailOfPerson = useSelector((state) => state.viewUserEmail);
   const myEmail = useSelector((state) => state.person.email);
   const myInfo = useSelector((state) => state.person);
@@ -13,12 +15,16 @@ const ViewProfile = (props) => {
   const dispatch = useDispatch();
   const [personInformation, setPersonInformation] = useState([]);
   const [loading, setLoading] = useState(false);
-
+  console.log(emailOfPerson)
   useEffect(() => {
+    if(!emailOfPerson || emailOfPerson.length == 0 || emailOfPerson == undefined){
+      navigate('/people',{replace : true})
+    }
     setLoading(true);
     axios
       .post("http://localhost:5000/getPersonByEmail", { email: emailOfPerson })
       .then((response) => {
+        
         setPersonInformation(response.data[0]);
         let myEmailForTable = "";
         for (var i = 0; i < myEmail.length; i++) {
@@ -26,6 +32,7 @@ const ViewProfile = (props) => {
             myEmailForTable += myEmail[i];
           }
         }
+        console.log(myEmailForTable)
         axios
           .post("http://localhost:5000/isfriend", {
             tableName: myEmailForTable,
@@ -130,7 +137,7 @@ const ViewProfile = (props) => {
   };
 
   const backHandler = () => {
-    props.layout("people");
+    navigate(-1, {replace:true})
     dispatch(functionsFromStore.setViewProfileEmail(""));
   };
   if (loading) {

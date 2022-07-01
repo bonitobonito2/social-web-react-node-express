@@ -1,13 +1,16 @@
 import { Fragment } from "react";
 import classes from "./card.module.css";
+import {useNavigate} from 'react-router-dom'
 import { useDispatch, useSelector } from "react-redux/es/exports";
 import { functionsFromStore } from "../../store/store";
 
 const Card = (props) => {
   const dispath = useDispatch();
+  const navigate = useNavigate()
   const profileViewHandler = () => {
-    props.layout("viewProfile");
+    navigate(`/people/${props.email}`, {replace : true})
     dispath(functionsFromStore.setViewProfileEmail(props.email));
+  
   };
   return (
     <Fragment>

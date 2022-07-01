@@ -10,8 +10,8 @@ const Sendsms = (props) => {
   const submitHandler = (event) => {
     event.preventDefault();
     const message = sms.current.value.trim();
-    if (message.length > 35) {
-      alert("sms is too long, max length of sms 30 chars");
+    if (message.length > 200) {
+      alert("sms is too long, max length of sms 200 chars");
       return;
     }
     if (message.length == 0) {
@@ -34,7 +34,7 @@ const Sendsms = (props) => {
   return (
     <form onSubmit={submitHandler}>
       <div className={classes.sendDiv}>
-        <input max="40" ref={sms} placeholder="Aa" />
+        <input  ref={sms} placeholder="Aa" />
         <button>send</button>
       </div>
     </form>

@@ -3,6 +3,7 @@ import './login.css'
 import InputHook from "../../hooks/useInput";
 import loadingClasses from '../../loading/loading.module.css'
 import axios from "axios";
+import {useNavigate} from 'react-router-dom'
 import {useDispatch} from 'react-redux'
 import { functionsFromStore } from "../../store/store";
 const Login = (props)=>{
@@ -10,11 +11,13 @@ const Login = (props)=>{
 
   const [isLoading,setLoading] = useState(false)
   const dispatch = useDispatch()
+  const navigate = useNavigate()
   const login = (email,password)=>{
         setLoading(true)
               axios.post('http://localhost:5000/login',{email : email,password: password})
               .then(response =>{
                 if(response.data != 'failed registration'){
+                  navigate('/profile', {replace:true})
                   localStorage.setItem('isLoggined',1)
                   console.log(response.data)
                   localStorage.setItem('ID',response.data[0]['ID'])
@@ -22,6 +25,7 @@ const Login = (props)=>{
                  
                   props.isloggined(localStorage.getItem('isLoggined'))
                   dispatch(functionsFromStore.changeUserInformationPlus(response.data[0]))
+               
 
                 }else{
                   setLoading(false)
@@ -44,8 +48,9 @@ const Login = (props)=>{
       focusHandler:passwordFocus} = InputHook('password')  
 
     const submitHandler = (event)=>{
+      event.preventDefault()
       if(classEmail != 'invalid' && passwordclass != 'invalid'){
-        event.preventDefault()
+       
         login(emailInput,passwordInput)
       }else{
         alert('shigxoargak')
@@ -65,6 +70,7 @@ const Login = (props)=>{
         </div>
         <a href="#" class="link">Forgot Your Password?</a>
       </div>
+    
       <div class="action">
       
         <button>Sign in</button>

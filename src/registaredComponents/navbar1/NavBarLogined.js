@@ -1,17 +1,13 @@
 import React, { useState } from "react";
+import {NavLink,  useNavigate} from 'react-router-dom'
 import Classes from "./NavBarLogined.module.css";
 import { functionsFromStore } from "../../store/store";
 import { useSelector, useDispatch } from "react-redux";
 
-import axios from "axios";
 const NavBarLogined = (props) => {
+  const navigate = useNavigate()
   const dispatch = useDispatch();
-  const [actived, setActived] = useState("profile");
-  const logged = useSelector((state) => state.isLoggined);
   const picurl = useSelector((state) => state.person);
-
-  console.log(picurl);
-  console.log(logged);
   const navLogoutHandler = () => {
     localStorage.setItem("ID", 0);
     localStorage.setItem("isLoggined", 0);
@@ -30,18 +26,14 @@ const NavBarLogined = (props) => {
         potorul: "",
       })
     );
+    navigate('/login', {replace : true})
   };
 
   const navProfileHandler = () => {
-    props.layout("profile");
-    setActived("profile");
+    navigate('/profile', {replace : true})
   };
 
-  const navPeopleHandler = () => {
-    console.log("shemovedi");
-    props.layout("people");
-    setActived("people");
-  };
+
 
   const friendsHandler = () => {
     props.setActivatedFriends((state) => !state);
@@ -72,17 +64,12 @@ const NavBarLogined = (props) => {
         </a>
       </li>
       <li>
-        <a
-          onClick={navPeopleHandler}
-          class={actived === "people" && Classes.active}
-          href="#"
-        >
-          people
-        </a>
+        <NavLink className={(navData) =>navData.isActive ? Classes.active : ''} to= '/people' >people</NavLink>
       </li>
 
-      {/* <li><a onClick={navRegistarHandler} class = {actived ==='upload' && Classes.active} href="#">uoload</a></li>
-    <li><a onClick={navRegistarHandler} class = {actived ==='people' && Classes.active} href="#">people</a></li> */}
+      <li>
+        <NavLink className={(navData) =>navData.isActive ? Classes.active : ''} to= '/messenger' >messenger</NavLink>
+      </li>
     </div>
   );
 };

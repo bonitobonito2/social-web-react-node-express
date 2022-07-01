@@ -4,9 +4,26 @@ const bodyParser = require("body-parser");
 const port = 5000;
 const app = express();
 const mysql = require("mysql");
+const multer = require('multer')
+
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
 app.use(express.json());
+
+
+
+var storage = multer.diskStorage({
+  destination: (req, file, callBack) => {
+      callBack(null, './public/images/')     // './public/images/' directory name where save the file
+  },
+  filename: (req, file, callBack) => {
+      callBack(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname))
+  }
+})
+
+var upload = multer({
+  storage: storage
+});
 
 var con = mysql.createConnection({
   host: "localhost",
@@ -20,7 +37,8 @@ con.connect(function (err) {
   console.log("Connected!");
 });
 
-app.post("/login", (req, res) => {
+app.post("/login",upload.single('image'), (req, res) => {
+  console.log(req.body)
   const email = req.body.email;
   const password = req.body.password;
   con.query(
@@ -40,8 +58,9 @@ app.get("/", (req, res) => {
   res.send(res.message.sms);
 });
 
-app.post("/registration", (req, res) => {
+app.post("/registration",  (req, res) => {
   const { name, lastname, nickname, email, password } = req.body;
+  name.length = 0
   if (
     name.length == 0 ||
     lastname.length == 0 ||
@@ -71,8 +90,8 @@ app.post("/registration", (req, res) => {
             if (err) {
               res.send("err");
               throw err;
-            }
-            let newemail = "";
+            } 
+            let newemail = ""; 
             for (var i = 0; i < email.length; i++) {
               if ((email[i] !== ".") & (email[i] !== "@")) {
                 newemail += email[i];
@@ -178,7 +197,7 @@ app.post("/deleteaccount", (req, res) => {
       con.query(
         `select email from registaredusers where id != ${req.body.id}`,
         (err, result) => {
-          if (err) console.log(chat);
+          if (err) console.log(chat); 
           for (var i = 0; i < result.length; i++) {
             const email2 = emailTransform(result[i].email);
             const tableName1 = tableEmail + "to" + email2 + "chat";
@@ -215,6 +234,10 @@ app.post("/deleteaccount", (req, res) => {
 
 app.post("/getPersonByEmail", (req, res) => {
   const email = req.body.email;
+  if(email == null){
+    res.send('xd')
+    return
+  }
   con.query(
     `SELECT * FROM registaredusers WHERE email = '${email}'`,
     (err, result) => {
@@ -251,16 +274,25 @@ app.post("/addfriend", (req, res) => {
     }
   );
 });
-
-app.post("/isfriend", (req, res) => {
-  con.query(
-    `SELECT * from ${req.body.tableName}friends where email = '${req.body.email}'`,
-    (err, result) => {
-      if (err) console.log(err);
-      if (result.length == 0) res.send("not friends");
-      else res.send("friends");
-    }
-  );
+ 
+app.post("/isfriend", (req, res) => { 
+  console.log(req.body.tableName + 'xdxdxdxd') 
+  if(req.body.tableName === undefined){
+    console.log('shhemovedi') 
+    res.send('null') 
+    return
+  }else{ 
+    con.query(
+      `SELECT * from ${req.body.tableName}friends where email = '${req.body.email}'`,
+      (err, result) => { 
+        console.log(result) 
+        if (err) console.log(err);
+        if (result.length == 0) res.send("not friends");
+        else res.send("friends");
+      }
+    );
+  }
+  
 });
 
 app.post("/removeFriend", (req, res) => {

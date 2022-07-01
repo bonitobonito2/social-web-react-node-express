@@ -1,15 +1,14 @@
 import { Fragment, useEffect, useState } from "react";
 import "./App.css";
 import NavBar from "./components/NavBar/NavBar";
-import Axious from "axios";
 import Body from "./registaredComponents/body";
 import Login from "./components/login/login";
 import Registar from "./components/registar/registar";
+import { Route, Routes, Navigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { functionsFromStore } from "./store/store";
 function App() {
   const dispatch = useDispatch();
-  const [layout, setLayout] = useState("login");
   const loginInfo = useSelector((state) => state.isLoggined);
   console.log("aq kide ertxel shemovedi");
   const [isLoggined, setLoggined] = useState(
@@ -28,9 +27,12 @@ function App() {
   if (loginInfo == 0 || loginInfo == null) {
     return (
       <Fragment>
-        <NavBar layout={setLayout} />
-        {layout === "login" && <Login isloggined={setLoggined} />}
-        {layout === "registar" && <Registar />}
+        <NavBar />
+        <Routes>
+          <Route path="/login" element ={<Login />} />
+          <Route path="/registar" element ={<Registar />} />
+          <Route path="*" element = {<Navigate to='/login' />} />  
+        </Routes>
       </Fragment>
     );
   } else {

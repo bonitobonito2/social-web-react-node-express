@@ -16,13 +16,10 @@ const Chat = (props) => {
   const [chater, setChater] = useState([]);
   const [changer, setChanger] = useState(false);
   const friendEmail1 = useSelector((state) => state.chatWithEmail);
-  const bottomRef = useRef();
 
+  const messagesEndRef = useRef(null);
   const scrollToBottom = () => {
-    bottomRef.current.scrollIntoView({
-      behavior: "smooth",
-      block: "start",
-    });
+    messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
   };
 
   useEffect(() => {
@@ -34,22 +31,23 @@ const Chat = (props) => {
   useEffect(() => {
     scrollToBottom();
   }, [fetch]);
-
+  useEffect(() => {
+    scrollToBottom();
+  });
   useEffect(() => {
     axios
       .post("http://localhost:5000/getPersonByEmail", { email: friendEmail1 })
       .then((response) => {
         const gaga = response.data[0];
         setChater(gaga);
-      });
-
-    axios
-      .post("http://localhost:5000/getchat", {
-        senderEmail: myEmail,
-        reciverEmail: friendEmail1,
-      })
-      .then((response) => {
-        setChat(response.data);
+        axios
+          .post("http://localhost:5000/getchat", {
+            senderEmail: myEmail,
+            reciverEmail: friendEmail1,
+          })
+          .then((response) => {
+            setChat(response.data);
+          });
       });
   }, [fetch, changer, friendEmail1]);
   console.log(chat);
@@ -63,11 +61,12 @@ const Chat = (props) => {
   }
   return (
     <Fragment>
-      <div ref={bottomRef} className={classes.chatMain}>
+      <div className={classes.chatMain}>
         <div id="div" className={classes.chatMain1}>
           <ChatPerson name={name} image={chater.potorul} chat={props.chat} />
           <mhm />
           <Sendsms fetch={setfetch} />
+
           {chat.map((state) =>
             state.recivedsms == "null" ? (
               <Sent sms={state.mysms} />
@@ -75,6 +74,8 @@ const Chat = (props) => {
               <SendTome sms={state.recivedsms} image={chater.potorul} />
             )
           )}
+
+          <div ref={messagesEndRef} />
         </div>
       </div>
     </Fragment>

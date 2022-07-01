@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import {NavLink} from 'react-router-dom'
 import Classes from "./NavBar.module.css";
 
 const NavBar = (props) => {
@@ -15,22 +16,18 @@ const NavBar = (props) => {
   return (
     <div className={Classes.navBar}>
       <li>
-        <a
+        <NavLink className={(navData) =>navData.isActive ? Classes.active : ''} to='/login' >login</NavLink>
+        {/* <a
           onClick={navLoginHandler}
           class={actived === "login" && Classes.active}
           href="#"
         >
           login
-        </a>
+        </a> */}
       </li>
       <li>
-        <a
-          onClick={navRegistarHandler}
-          class={actived === "registar" && Classes.active}
-          href="#"
-        >
-          registar
-        </a>
+      <NavLink className={(navData) =>navData.isActive ? Classes.active : ''} to='/registar' >registar</NavLink>
+         
       </li>
     </div>
   );

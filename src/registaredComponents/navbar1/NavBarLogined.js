@@ -78,6 +78,24 @@ const NavBarLogined = (props) => {
           messenger
         </NavLink>
       </li>
+
+      <li>
+        <NavLink
+          className={(navData) => (navData.isActive ? Classes.active : "")}
+          to="/craetePost"
+        >
+          create post
+        </NavLink>
+      </li>
+
+      <li>
+        <NavLink
+          className={(navData) => (navData.isActive ? Classes.active : "")}
+          to="/posts"
+        >
+          posts
+        </NavLink>
+      </li>
     </div>
   );
 };

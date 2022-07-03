@@ -450,6 +450,39 @@ app.post("/getchat", (req, res) => {
     res.send(result);
   });
 });
+
+app.post("/createPost", (req, res) => {
+  console.log("shemovedi");
+  console.log(req.body);
+  con.query(
+    `insert into posts(name,lastname,email,postUrl,description) 
+    Values(
+      '${req.body.name}',
+      '${req.body.lastname}',
+      '${req.body.email}',
+      '${req.body.potoUrl}',
+      '${req.body.description}'
+      )`
+  ),(err,res)=>{
+    if(err) throw err
+    res.send("inserted");
+  };
+ 
+});
+app.post('/getPost',(req,res)=>{
+  console.log(req.body) 
+
+  con.query(`select * from posts`,(err,result)=>{
+    if (err) throw err
+    console.log(result)
+    if(result.length != 0){
+      res.send(result)
+    }
+    else{
+      res.send('no posts, create one?')
+    }
+  })
+})
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
 });

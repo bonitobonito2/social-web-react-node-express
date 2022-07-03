@@ -2,9 +2,11 @@ import React, { Fragment, useState } from "react";
 import NavBarLogined from "./navbar1/NavBarLogined";
 import { Route, Routes, Link, Navigate } from "react-router-dom";
 import Profile from "./profile/profile";
+import Post from "./posts/post";
 import ViewProfile from "./viewProfile/viewProfile";
 import People from "./people/people";
 import Messenger from "./messenger/Messenger";
+import CreatePost from "./create-post/CreatePost";
 import Chat from "./chat/chat";
 import { useEffect } from "react";
 import axios from "axios";
@@ -50,6 +52,8 @@ const Body = (props) => {
           element={<ViewProfile chat={setActivChat} />}
         />
         <Route path="/messenger" element={<Messenger />} />
+        <Route path="/posts" element={<Post />} />
+        <Route path="/craetePost" element = {<CreatePost />} />
         <Route path="*" element={<Navigate to="/profile" />} />
       </Routes>
     </Fragment>

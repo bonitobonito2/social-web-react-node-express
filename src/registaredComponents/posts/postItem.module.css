@@ -1,0 +1,46 @@
+.card{
+    background-color: white;
+    border-radius: 10px;
+
+   margin: 20px;
+   padding: 10px;
+}
+
+.img img{
+    width: 40%;
+    height: 60%;
+    border-radius: 10px;
+    margin: 10px;
+}
+.actions{
+    width: 50%;
+    display: grid;
+    grid-template-columns:50% 50%;
+    
+}
+.actions button{
+    margin: 5px;
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+}
+.delete{
+    margin: 5px;
+    background-color: #a10c0c; /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+    width: 25%;
+}
+
